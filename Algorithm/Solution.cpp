@@ -384,7 +384,7 @@ public:
 		return ans;
 	}
 
-	int maxSubArray(vector<int>& nums) {
+	/*int maxSubArray(vector<int>& nums) {
 
 		int length = nums.size();
 
@@ -395,6 +395,21 @@ public:
 			sum += nums[i];
 			ans = max(ans, sum);
 			if (sum < 0) sum = 0;
+		}
+		return ans;
+	}*/
+
+	vector<int> twoSum2(vector<int>& numbers, int target) {
+		int l = 0, r = numbers.size() - 1;
+		vector<int> ans;
+		while (l < r) {
+			if (numbers[l] + numbers[r] == target) {
+				ans.push_back(l + 1);
+				ans.push_back(r + 1);
+				break;
+			}
+			else if (numbers[l] + numbers[r] > target) r--;
+			else l++;
 		}
 		return ans;
 	}
