@@ -4,6 +4,9 @@
 #include <stack>
 #include <sstream>
 #include <unordered_map>
+#include <set>
+#include <iostream>
+
 using namespace std;
 
 class RecentCounter {
@@ -349,5 +352,50 @@ public:
 		return profit;
 	}
 
-	
+	vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+		int n = buildings.size();
+		vector <vector <int> > v(n * 2);
+		vector <int> point(2);
+		for (int i = 0; i < buildings.size(); i++) {
+			point[0] = buildings[i][0]; point[1] = buildings[i][2]; v[i] = point;
+			point[0] = buildings[i][1]; point[1] = -buildings[i][2]; v[n + i] = point;
+		}
+		sort(v.begin(), v.end(), [](auto& a, auto& b) {
+			return a[0] < b[0];
+		});
+
+		vector <vector <int>> ans;
+		multiset <int, greater<int>> ma;
+		for (int i = 0; i < v.size(); i++) {
+			if (v[i][1] < 0) {
+				ma.erase(ma.find(abs(v[i][1])));
+			}
+			else {
+				ma.insert(v[i][1]);
+			}
+
+			if (i != v.size() - 1 && v[i][0] == v[i + 1][0]) continue;
+			point[0] = v[i][0]; point[1] = ma.size() > 0 ? *ma.begin() : 0;
+			if (ans.size() == 0 || ans.back()[1] != point[1]) {
+				if (i != v.size() - 1 && point[1] == 0 && v[i + 1][0] - 1 <= v[i][0]) continue;
+				ans.push_back(point);
+			}
+		}
+		return ans;
+	}
+
+	int maxSubArray(vector<int>& nums) {
+
+		int length = nums.size();
+
+		if (length == 0) return 0;
+
+		int sum = 0; int ans = INT_MIN;
+		for (int i = 0; i < length; i++) {
+			sum += nums[i];
+			ans = max(ans, sum);
+			if (sum < 0) sum = 0;
+		}
+		return ans;
+	}
 };
