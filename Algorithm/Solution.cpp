@@ -400,17 +400,20 @@ public:
 	}*/
 
 	vector<int> twoSum2(vector<int>& numbers, int target) {
-		int l = 0, r = numbers.size() - 1;
-		vector<int> ans;
-		while (l < r) {
-			if (numbers[l] + numbers[r] == target) {
-				ans.push_back(l + 1);
-				ans.push_back(r + 1);
-				break;
+		unordered_map<int, int> map;
+		vector<int> index;
+
+		for (int i = 0; i < numbers.size(); i++) {
+			if (map.find(target - numbers[i]) != map.end()) {
+				index.push_back(map[target - numbers[i]] + 1);
+				index.push_back(i + 1);
+				return index;
 			}
-			else if (numbers[l] + numbers[r] > target) r--;
-			else l++;
+			else {
+				map[numbers[i]] = i;
+			}
 		}
-		return ans;
+		return index;
+		
 	}
 };

@@ -21,7 +21,7 @@ int main()
 	Solution Solution;
 	std::cout << "Hello World!\n";
 
-	int target = 9;
+	int target = 18;
 	vector<int> numbers = { 2,7,11,15 };
 
 	vector<int> ans = Solution.twoSum2(numbers, target);
