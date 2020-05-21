@@ -7,5 +7,14 @@ E:\C++ Code\Algorithm\Solution.cpp(289,21): warning C4018: '<': signed/unsigned 
 E:\C++ Code\Algorithm\Solution.cpp(359,21): warning C4018: '<': signed/unsigned mismatch
 E:\C++ Code\Algorithm\Solution.cpp(369,21): warning C4018: '<': signed/unsigned mismatch
 E:\C++ Code\Algorithm\Solution.cpp(406,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Algorithm.cpp(29,20): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(421,12): warning C4244: 'initializing': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+E:\C++ Code\Algorithm\Solution.cpp(422,12): warning C4244: 'initializing': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
   Algorithm.vcxproj -> E:\C++ Code\Algorithm\Debug\Algorithm.exe

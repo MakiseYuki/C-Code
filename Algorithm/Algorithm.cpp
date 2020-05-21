@@ -21,15 +21,10 @@ int main()
 	Solution Solution;
 	std::cout << "Hello World!\n";
 
-	int target = 18;
-	vector<int> numbers = { 2,7,11,15 };
+	vector<vector<int>> L = { {1,1},{2,3},{3,2} };
+	//bool ans = Solution.isBoomerang(L);
 
-	vector<int> ans = Solution.twoSum2(numbers, target);
-
-	for (int i = 0; i < ans.size(); i++) {
-		cout << ans.at(i) << " ";
-	}
-	
+	cout << "ANS: "<< L[0] << endl;
 
 	
 }
