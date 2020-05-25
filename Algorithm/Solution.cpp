@@ -420,4 +420,37 @@ public:
 	bool isBoomerang(vector<vector<int>>& points) {
 		return (points[2][0] - points[0][0]) * (points[1][1] - points[0][1]) == (points[1][0] - points[0][0]) * (points[2][1] - points[0][1]) ? false : true;
 	}
+
+	int addDigits(int num) {
+
+		int ori = num; int rev = 0; int temp = ori;
+		while (temp >= 10) {
+			ori = temp;
+			while (ori >= 10) {
+				rev = rev + ori % 10;
+				ori = ori / 10;
+				temp = rev + ori;
+			}
+			rev = 0;
+		}
+		return temp;
+	}
+
+	string multiply(string num1, string num2) {
+		int len1 = num1.length(); int len2 = num2.length();
+		int prox  = 0;
+		if (num1 == "0" || num2 == "0") {
+			return "0";
+		}
+		else {
+			for (int i = len2-1;i >=0; i--) {
+				for (int j = len1 - 1; j >= 0; j--) {
+					prox += (num2[i] - 48)*(pow(10,len2-1-i))*(num1[j] - 48)*(pow(10, len1 - 1 - j));
+				}
+			}
+		}
+
+		return to_string(prox);
+		
+	}
 };

@@ -15,16 +15,14 @@ bool myfunction(int i, int j) { return (i < j); }
 struct myclass {
     bool operator() (int i, int j) { return (i < j); }
 } myobject;
-
+ 
 int main()
 {
 	Solution Solution;
 	std::cout << "Hello World!\n";
+	string str = Solution.multiply("123", "456");
 
-	vector<vector<int>> L = { {1,1},{2,3},{3,2} };
-	//bool ans = Solution.isBoomerang(L);
-
-	cout << "ANS: "<< L[0] << endl;
+	cout << str;
 
 	
 }
