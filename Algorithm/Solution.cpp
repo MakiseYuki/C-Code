@@ -32,6 +32,8 @@ struct ListNode {
 	ListNode* next;
 	ListNode(int x) : val(x), next(NULL) {}
 };
+
+
  
 
 class Solution {
@@ -437,20 +439,59 @@ public:
 	}
 
 	string multiply(string num1, string num2) {
-		int len1 = num1.length(); int len2 = num2.length();
-		int prox  = 0;
-		if (num1 == "0" || num2 == "0") {
-			return "0";
+		int n = num1.size(), m = num2.size();
+		vector<int> a(n), b(m);
+		for (int i = 0; i < n; ++i) {
+			a[i] = num1[n - 1 - i] - '0';
 		}
-		else {
-			for (int i = len2-1;i >=0; i--) {
-				for (int j = len1 - 1; j >= 0; j--) {
-					prox += (num2[i] - 48)*(pow(10,len2-1-i))*(num1[j] - 48)*(pow(10, len1 - 1 - j));
+		for (int j = 0; j < m; ++j) {
+			b[j] = num2[m - 1 - j] - '0';
+		}
+		vector<int> ans(n + m + 1, 0);
+		for (int i = 0; i < n; ++i) {
+			for (int j = 0; j < m; ++j) {
+				ans[i + j] += a[i] * b[j];
+			}
+		}
+		int carry = 0;
+		for (int i = 0; i <= n + m; ++i) {
+			int pres = ans[i] + carry;
+			carry = pres / 10;
+			ans[i] = pres % 10;
+		}
+		int beg;
+		for (beg = n + m; beg > 0; --beg) {
+			if (ans[beg] != 0) { break; }
+		}
+		string fin = "";
+		for (int i = beg; i >= 0; --i) {
+			fin += ((char)(ans[i] + '0'));
+		}
+		return fin;
+		}
+
+	void dfs(int i, int j, vector<vector<char>>& grid) {
+		if (i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size() || grid[i][j] - '0' == 0)
+			return;
+		grid[i][j] = 0 + '0';
+		dfs(i + 1, j, grid);
+		dfs(i - 1, j, grid);
+		dfs(i, j + 1, grid);
+		dfs(i, j - 1, grid);
+	}
+
+	int numIslands(vector<vector<char>>& grid) {
+		int count = 0;
+		for (int i = 0; i < grid.size(); i++) {
+			for (int j = 0; j < grid[0].size(); j++) {
+				if (grid[i][j] - '0' == 1) {
+					count++;
+					dfs(i, j, grid);
 				}
 			}
 		}
-
-		return to_string(prox);
-		
+		return count;
 	}
+
+
 };
