@@ -27,13 +27,20 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+//struct ListNode {
+//	int val;
+//	ListNode* next;
+//	ListNode(int x) : val(x), next(NULL) {}
+//};
+
 struct ListNode {
 	int val;
 	ListNode* next;
-	ListNode(int x) : val(x), next(NULL) {}
+	ListNode() : val(0), next(nullptr) {}
+	ListNode(int x) : val(x), next(nullptr) {}
+	ListNode(int x, ListNode* next) : val(x), next(next) {}
+	
 };
-
-
  
 
 class Solution {
@@ -492,6 +499,45 @@ public:
 		}
 		return count;
 	}
+	
+	ListNode* reverseList(ListNode* head) {
+		ListNode*ans , *curr , *left ;
+		ans = NULL;
+		curr = head;
+		left = head;
 
+		while (curr) {
+			left = curr->next;
+			curr->next = ans;
+			ans = curr;
+			curr = left;
+		}
+		return ans;
+		
+	}
+
+	bool isAlienSorted(vector<string>& words, string order) {
+
+		for (int i = 0; i < words.size() - 1; i++) {
+
+			for (int j = 0; j < words[i].size(); j++) {
+
+				if (order.find(words[i][j]) > order.find(words[i + 1][j]))
+				{
+					return false; break;
+				}
+				else if (order.find(words[i][j]) < order.find(words[i + 1][j])) break;
+
+				if (order.find(words[i][j]) == order.find(words[i + 1][j])) {
+					if (words[i][j + 1] == NULL)  return true;
+
+					if (words[i + 1][j + 1] == NULL)  return false;
+				}
+
+			}
+
+		}
+		return true;
+	}
 
 };

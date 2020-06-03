@@ -20,9 +20,9 @@ int main()
 {
 	Solution Solution;
 	std::cout << "Hello World!\n";
-	string str = Solution.multiply("123", "456");
+	string str = "sijjk";
 
-	cout << str;
+	cout << str.find('j');
 
 	
 }
