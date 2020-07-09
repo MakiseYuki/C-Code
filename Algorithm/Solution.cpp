@@ -8,18 +8,6 @@
 #include <iostream>
 
 using namespace std;
-
-class RecentCounter {
-public:
-	RecentCounter() {
-
-	}
-
-	int ping(int t) {
-
-	}
-};
-
 struct TreeNode {
 	int val;
 	TreeNode *left;
@@ -249,9 +237,10 @@ public:
 		unordered_map<int, int> mp;
 		
 		for (int i = 0; nums.size(); i++) {
+			mp[nums[i]] = i;
 			if (mp.find(target - nums[i]) != mp.end()) // No use of iterator
 				return { mp.find(target - nums[i])->second,i };
-			mp[nums[i]] = i;
+			
 		}
 		return {};
 	}

@@ -1,17 +1,16 @@
-﻿  Algorithm.cpp
-E:\C++ Code\Algorithm\Solution.cpp(58,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(60,22): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(72,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(188,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(298,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(368,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(378,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(415,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(481,27): warning C4018: '>=': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(481,47): warning C4018: '>=': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(492,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(493,22): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(521,21): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Solution.cpp(523,22): warning C4018: '<': signed/unsigned mismatch
-E:\C++ Code\Algorithm\Algorithm.cpp(21,11): warning C4101: 'Solution': unreferenced local variable
+﻿  Solution.cpp
+E:\C++ Code\Algorithm\Solution.cpp(46,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(48,22): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(60,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(176,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(287,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(357,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(367,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(404,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(470,27): warning C4018: '>=': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(470,47): warning C4018: '>=': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(481,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(482,22): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(510,21): warning C4018: '<': signed/unsigned mismatch
+E:\C++ Code\Algorithm\Solution.cpp(512,22): warning C4018: '<': signed/unsigned mismatch
   Algorithm.vcxproj -> E:\C++ Code\Algorithm\Debug\Algorithm.exe

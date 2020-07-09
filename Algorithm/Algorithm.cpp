@@ -19,10 +19,17 @@ struct myclass {
 int main()
 {
 	Solution Solution;
-	std::cout << "Hello World!\n";
-	string str = "sijjk";
+	cout << "Hello World!\n";
 
-	cout << str.find('j');
+	vector<int> nums = { 2,7,11,15 };
+	int target = 26;
+
+	vector<int> ans = Solution.twoSum(nums, target);
+
+	cout << ans[0] << "and" << ans[1] << endl;
+
+
+	
 
 	
 }
