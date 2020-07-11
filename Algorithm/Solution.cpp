@@ -618,49 +618,49 @@ public:
 		return ans;
 	}
 
-	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-		int value = 0;                              //
-		value = l1->val + l2->val;                 // add the first values of l1 and l2 to l  
-		ListNode* l = new ListNode(value % 10);  //
-		value /= 10;   // now 'value' holds the reminder
+	//ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+	//	int value = 0;                              //
+	//	value = l1->val + l2->val;                 // add the first values of l1 and l2 to l  
+	//	ListNode* l = new ListNode(value % 10);  //
+	//	value /= 10;   // now 'value' holds the reminder
 
-		ListNode* ptr = l;
-		while (l1->next != NULL || l2->next != NULL) {
-			if (l1->next != NULL && l2->next != NULL) {   // if both l1 and l2 still have value
-				l1 = l1->next;  l2 = l2->next;
-				value += l1->val + l2->val;
-				ListNode* node = new ListNode(value % 10);
-				value /= 10;
-				ptr->next = node;
-				ptr = node;
-			}
+	//	ListNode* ptr = l;
+	//	while (l1->next != NULL || l2->next != NULL) {
+	//		if (l1->next != NULL && l2->next != NULL) {   // if both l1 and l2 still have value
+	//			l1 = l1->next;  l2 = l2->next;
+	//			value += l1->val + l2->val;
+	//			ListNode* node = new ListNode(value % 10);
+	//			value /= 10;
+	//			ptr->next = node;
+	//			ptr = node;
+	//		}
 
-			else if (l2->next != NULL) {    // if only l2 still has value
-				l2 = l2->next;
-				value += l2->val;
-				ListNode* node = new ListNode(value % 10);
-				value /= 10;
-				ptr->next = node;
-				ptr = node;
-			}
+	//		else if (l2->next != NULL) {    // if only l2 still has value
+	//			l2 = l2->next;
+	//			value += l2->val;
+	//			ListNode* node = new ListNode(value % 10);
+	//			value /= 10;
+	//			ptr->next = node;
+	//			ptr = node;
+	//		}
 
-			else {    // if only l1 still has value
-				l1 = l1->next;
-				value += l1->val;
-				ListNode* node = new ListNode(value % 10);
-				value /= 10;
-				ptr->next = node;
-				ptr = node;
-			}
-		}
+	//		else {    // if only l1 still has value
+	//			l1 = l1->next;
+	//			value += l1->val;
+	//			ListNode* node = new ListNode(value % 10);
+	//			value /= 10;
+	//			ptr->next = node;
+	//			ptr = node;
+	//		}
+	//	}
 
-		if (value > 0) {     // check if there is a reminder from the last sum
-			ListNode* node = new ListNode(value);
-			ptr->next = node;
-		}
+	//	if (value > 0) {     // check if there is a reminder from the last sum
+	//		ListNode* node = new ListNode(value);
+	//		ptr->next = node;
+	//	}
 
-		return l;
-	}
+	//	return l;
+	//}
 
 	int trap(vector<int>& h) {
 		int n = h.size(), ans = 0, lm = 0, rm = 0, l = 0, r = n - 1;
@@ -672,6 +672,44 @@ public:
 			else ans += rm - h[r--];
 		}
 		return ans;
+	}
+
+	vector<int> productExceptSelf(vector<int>& nums) {
+		int n = nums.size();
+		int pro = 1, zeron = 0;
+		bool zeroflag = false;
+		vector<int> ans(n);
+		for (int i = 0; i < n; i++) {
+			if (nums[i] == 0) {
+				zeroflag = true;
+				zeron++;
+			}
+			else {
+				pro *= nums[i];
+			}
+		}
+		if (zeroflag == true) {
+			if (zeron >= 2) {
+				ans = vector<int>(n, 0);
+			}
+			else {
+				for (int i = 0; i < n; i++) {
+					if (nums[i] != 0) {
+						ans[i] = 0;
+					}
+					else {
+						ans[i] = pro;
+					}
+				}
+			}
+		}
+		else{
+			for (int i = 0; i < n; i++) {
+				ans[i] = pro / nums[i];
+			}
+		}
+		return ans;
+		
 	}
 
 };

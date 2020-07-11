@@ -21,12 +21,15 @@ int main()
 	Solution Solution;
 	cout << "Hello World!\n";
 
-	vector<int> nums = { 2,7,11,15 };
-	int target = 26;
+	vector<int> nums = { 1,2,3,4 };
+	vector<int> ans = Solution.productExceptSelf(nums);
 
-	vector<int> ans = Solution.twoSum(nums, target);
+	for (int i = 0; i < nums.size(); i++) {
+		cout << ans[i] << " ";
+	}
 
-	cout << ans[0] << "and" << ans[1] << endl;
+	
+
 
 
 	
