@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <set>
 #include <iostream>
+#include <queue>
 
 using namespace std;
 struct TreeNode {
@@ -528,5 +529,138 @@ public:
 		}
 		return true;
 	}
+
+	int orangesRotting(vector<vector<int>>& grid)
+	{
+		int n, m;
+		n = grid.size(), m = grid[0].size();
+		queue<vector<int>> q;
+		vector<vector<int>> visited(n, vector<int>(m, -1));
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < m; j++)
+			{
+				if (grid[i][j] == 2)
+				{
+					vector<int> temp(2);
+					temp[0] = i;
+					temp[1] = j;
+					q.push(temp);
+					temp.clear();
+					visited[i][j] = 0;
+				}
+			}
+		}
+		while (q.size() != 0)
+		{
+			vector<int> s(2);
+			s[0] = q.front()[0];
+			s[1] = q.front()[1];
+			q.pop();
+			if (s[0] > 0)
+			{
+				vector<int> temp(2);
+				temp[0] = s[0] - 1;
+				temp[1] = s[1];
+				if (grid[temp[0]][temp[1]] == 1 && visited[temp[0]][temp[1]] == -1)
+				{
+					visited[temp[0]][temp[1]] = visited[s[0]][s[1]] + 1;
+					q.push(temp);
+				}
+				temp.clear();
+			}
+			if (s[1] > 0)
+			{
+				vector<int> temp(2);
+				temp[0] = s[0];
+				temp[1] = s[1] - 1;
+				if (grid[temp[0]][temp[1]] == 1 && visited[temp[0]][temp[1]] == -1)
+				{
+					visited[temp[0]][temp[1]] = visited[s[0]][s[1]] + 1;
+					q.push(temp);
+				}
+				temp.clear();
+			}
+			if (s[0] < n - 1)
+			{
+				vector<int> temp(2);
+				temp[0] = s[0] + 1;
+				temp[1] = s[1];
+				if (grid[temp[0]][temp[1]] == 1 && visited[temp[0]][temp[1]] == -1)
+				{
+					visited[temp[0]][temp[1]] = visited[s[0]][s[1]] + 1;
+					q.push(temp);
+				}
+				temp.clear();
+			}
+			if (s[1] < m - 1)
+			{
+				vector<int> temp(2);
+				temp[0] = s[0];
+				temp[1] = s[1] + 1;
+				if (grid[temp[0]][temp[1]] == 1 && visited[temp[0]][temp[1]] == -1)
+				{
+					visited[temp[0]][temp[1]] = visited[s[0]][s[1]] + 1;
+					q.push(temp);
+				}
+				temp.clear();
+			}
+		}
+		int ans = 0;
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < m; j++)
+			{
+				ans = max(ans, visited[i][j]);
+				if (grid[i][j] == 1 && visited[i][j] == -1) return -1;
+			}
+		}
+		return ans;
+	}
+
+	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+		int value = 0;                              //
+		value = l1->val + l2->val;                 // add the first values of l1 and l2 to l  
+		ListNode* l = new ListNode(value % 10);  //
+		value /= 10;   // now 'value' holds the reminder
+
+		ListNode* ptr = l;
+		while (l1->next != NULL || l2->next != NULL) {
+			if (l1->next != NULL && l2->next != NULL) {   // if both l1 and l2 still have value
+				l1 = l1->next;  l2 = l2->next;
+				value += l1->val + l2->val;
+				ListNode* node = new ListNode(value % 10);
+				value /= 10;
+				ptr->next = node;
+				ptr = node;
+			}
+
+			else if (l2->next != NULL) {    // if only l2 still has value
+				l2 = l2->next;
+				value += l2->val;
+				ListNode* node = new ListNode(value % 10);
+				value /= 10;
+				ptr->next = node;
+				ptr = node;
+			}
+
+			else {    // if only l1 still has value
+				l1 = l1->next;
+				value += l1->val;
+				ListNode* node = new ListNode(value % 10);
+				value /= 10;
+				ptr->next = node;
+				ptr = node;
+			}
+		}
+
+		if (value > 0) {     // check if there is a reminder from the last sum
+			ListNode* node = new ListNode(value);
+			ptr->next = node;
+		}
+
+		return l;
+	}
+
 
 };
