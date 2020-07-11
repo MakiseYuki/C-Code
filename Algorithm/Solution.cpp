@@ -662,5 +662,16 @@ public:
 		return l;
 	}
 
+	int trap(vector<int>& h) {
+		int n = h.size(), ans = 0, lm = 0, rm = 0, l = 0, r = n - 1;
+		if (n <= 2) return 0;
+		while (l <= r) {
+			rm = max(rm, h[r]);
+			lm = max(lm, h[l]);
+			if (lm <= rm) ans += lm - h[l++];
+			else ans += rm - h[r--];
+		}
+		return ans;
+	}
 
 };
