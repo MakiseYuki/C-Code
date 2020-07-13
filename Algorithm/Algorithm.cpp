@@ -7,35 +7,30 @@
 #include "Solution.cpp"
 #include <iterator>
 #include <array>
-
 using namespace std;
 
-bool myfunction(int i, int j) { return (i < j); }
-
-struct myclass {
-    bool operator() (int i, int j) { return (i < j); }
-} myobject;
+//bool myfunction(int i, int j) { return (i < j); }
+//
+//struct myclass {
+//    bool operator() (int i, int j) { return (i < j); }
+//} myobject;
  
 int main()
 {
-	Solution Solution;
-	cout << "Hello World!\n";
+	class Solution s;
+	string ans = s.numberToWords(100200000);
+	//string ans2 = s.numberToWords(33);
+	//21,522,329,901
+	//cout << 900 / 1000 << endl;
 
-	vector<int> nums = { 1,2,3,4 };
-	vector<int> ans = Solution.productExceptSelf(nums);
-
-	for (int i = 0; i < nums.size(); i++) {
-		cout << ans[i] << " ";
-	}
-
-	
-
-
-
-	
-
-	
+	cout << ans << endl;
+	//cout << ans2 << endl;
+	return 0;
 }
+
+
+
+
 	
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

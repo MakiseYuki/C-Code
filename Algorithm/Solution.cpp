@@ -9,6 +9,17 @@
 #include <queue>
 
 using namespace std;
+
+const string EMPTY = "";
+
+const string X[] = { EMPTY, "One ", "Two ", "Three ", "Four ", "Five ",
+			"Six ", "Seven ", "Eight ", "Nine ", "Ten ", "Eleven ",
+			"Twelve ", "Thirteen ", "Fourteen ", "Fifteen ",
+			"Sixteen ", "Seventeen ", "Eighteen ", "Nineteen " };
+
+const string Y[] = { EMPTY, EMPTY, "Twenty ", "Thirty ", "Forty ", "Fifty ",
+				"Sixty ", "Seventy ", "Eighty ", "Ninety " };
+
 struct TreeNode {
 	int val;
 	TreeNode *left;
@@ -712,4 +723,44 @@ public:
 		
 	}
 
+	string transToDigit(int num, string suffix) {
+		//cout << "Function is right here with input " << num << endl;
+
+
+		if (num == 0) {
+			return EMPTY;
+		}
+
+		if (num > 19) {
+			return Y[num / 10] + X[num % 10] + suffix;
+		}
+		else {
+			return X[num] + suffix;
+		}
+
+	}
+
+	string numberToWords(unsigned long long int num) {
+		string res;
+		res = transToDigit((num % 100), "");
+
+		/*if (num > 100 && num % 100) {
+			res = "and " + res;
+		}*/
+		if (num == 0) {
+			res = "Zero ";
+		}
+		else {
+		res = transToDigit((num / 100) % 10, "Hundred ") + res;
+		res = transToDigit((num / 1000) % 100, "Thousand ") + res;
+		res = transToDigit((num / 100000) % 10, "Hundred ") + res;
+		if ((num / 1000) % 100 == 0 && (num%1000000/1000)!=0) { res = res + "Thousand "; }
+		res = transToDigit((num / 1000000) % 100, "Million ") + res;
+		res = transToDigit((num / 100000000) % 10, "Hundred ") + res;
+		if ((num / 1000000) % 100 == 0 && (num % 1000000000 / 1000) != 0) { res = res + "Million "; }
+		res = transToDigit((num / 1000000000) % 100, "Billion ") + res;
+		}
+		res.pop_back();
+		return res;
+	}
 };
