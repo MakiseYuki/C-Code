@@ -753,14 +753,33 @@ public:
 		else {
 		res = transToDigit((num / 100) % 10, "Hundred ") + res;
 		res = transToDigit((num / 1000) % 100, "Thousand ") + res;
-		res = transToDigit((num / 100000) % 10, "Hundred ") + res;
-		if ((num / 1000) % 100 == 0 && (num%1000000/1000)!=0) { res = res + "Thousand "; }
+		
+		if ((num / 1000) % 100 == 0 && (num % 1000000) / 100000 != 0) { res = transToDigit((num / 100000) % 10, "Hundred Thousand ") + res; }
+		else { res = transToDigit((num / 100000) % 10, "Hundred ") + res; }
+
 		res = transToDigit((num / 1000000) % 100, "Million ") + res;
-		res = transToDigit((num / 100000000) % 10, "Hundred ") + res;
-		if ((num / 1000000) % 100 == 0 && (num % 1000000000 / 1000) != 0) { res = res + "Million "; }
+		
+		if ((num / 1000000) % 100 == 0 && (num % 1000000000) / 100000000 != 0) { res = transToDigit((num / 100000000) % 10, "Hundred Million ") + res; }
+		else { res = transToDigit((num / 100000000) % 10, "Hundred ") + res; }
+
 		res = transToDigit((num / 1000000000) % 100, "Billion ") + res;
+		
 		}
 		res.pop_back();
 		return res;
+	}
+
+	vector<string> fizzBuzz(int n) {
+		vector<string> ans(n);
+		for (int i = 0; i < n; i++) {
+			ans[i] = to_string(i + 1);
+
+			if ((i + 1) % 15 == 0) { ans[i] = "FizzBuzz"; }
+			else if ((i + 1) % 3 == 0) { ans[i] = "Fizz"; }
+			else if ((i + 1) % 5 == 0) { ans[i] = "Buzz"; }
+
+		}
+
+		return ans;
 	}
 };

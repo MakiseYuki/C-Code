@@ -9,24 +9,51 @@
 #include <array>
 using namespace std;
 
-//bool myfunction(int i, int j) { return (i < j); }
-//
-//struct myclass {
-//    bool operator() (int i, int j) { return (i < j); }
-//} myobject;
- 
+string addBinary(string a, string b);
+
 int main()
 {
-	class Solution s;
-	string ans = s.numberToWords(100200000);
-	//string ans2 = s.numberToWords(33);
-	//21,522,329,901
-	//cout << 900 / 1000 << endl;
+	
+	string ans = addBinary("1011", "1101");
+	cout << ans;
 
-	cout << ans << endl;
-	//cout << ans2 << endl;
 	return 0;
 }
+
+string addBinary(string a, string b) {
+	string ans;
+	int la = a.length(), lb = b.length();
+	int ma =  la >= lb  ? la : lb;
+
+	if (la > lb) {
+		b.insert(0, la - lb, '0');
+		lb = b.length();
+	}
+	else if (lb > la) {
+		a.insert(0, lb - la, '0');
+		la = a.length();
+	}
+
+	bool res = false;
+	for (int i = 1; i <= ma; i++) {
+		int cha = a[la - i]-48, chb = b[lb - i]-48;
+		
+		if (!res) {
+			ans.insert(0,1,(char(cha ^ chb) + 48));
+			res = cha & chb;
+		}
+		else {
+			ans.insert(0,1,((char(cha ^ chb)^res) + 48));
+			res = char(cha | chb) & res;
+		}
+		
+	}
+
+	if (res) ans.insert(0,1,'1');
+	return ans;
+}
+
+
 
 
 
