@@ -53,6 +53,28 @@ string addBinary(string a, string b) {
 	return ans;
 }
 
+string longestCommonPrefix(vector<string>& strs) {
+
+	int len = strs.size();
+	if (len == 0)
+		return "";
+
+	string ans;
+	auto str = strs[0];
+	int len2 = str.size();
+
+	for (int i = 0; i < len2; ++i)
+	{
+		for (int j = 1; j < len; ++j)
+		{
+			if (i == strs[j].size() || str[i] != strs[j][i])
+				return ans;
+		}
+		ans += str[i];
+	}
+	return ans;
+}
+
 
 
 
