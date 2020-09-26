@@ -1,0 +1,2 @@
+E:\C++ Code\Algorithm\Debug\Algorithm.exe
+E:\C++ Code\Algorithm\Debug\Algorithm.pdb

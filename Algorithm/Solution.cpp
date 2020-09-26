@@ -782,4 +782,32 @@ public:
 
 		return ans;
 	}
+
+	bool isPalindrome(string s) {
+		string a, b;
+		int len = s.size();
+		
+		for_each(s.begin(), s.end(), [](char& c) {
+			c = ::tolower(c);
+		});
+
+		for (int i = 0; i < len; i++) {
+			if(s.at(i)>=97 && s.at(i)<=122 || s.at(i) >= 48 && s.at(i) <= 57) a += s.at(i);
+			if(s.at(len-i-1)>=97 && s.at(len-i-1)<=122 || s.at(len - i - 1) >= 48 && s.at(len - i - 1) <= 57) b += s.at(len-i-1);
+
+		}
+
+		/*cout << a << endl;
+		cout << b << endl;*/
+
+		for (int i = 0; i < a.size(); i++) {
+			if (a.at(i) != b.at(i)) return false;
+		}
+		return true;
+	
+	}
+
+	void test(string s) {
+		cout << s;
+	}
 };

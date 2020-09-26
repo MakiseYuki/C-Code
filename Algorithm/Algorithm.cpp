@@ -14,8 +14,10 @@ string addBinary(string a, string b);
 int main()
 {
 	
-	string ans = addBinary("1011", "1101");
-	cout << ans;
+	string s = "0p";
+	
+	class Solution sl;
+	cout << sl.isPalindrome(s);
 
 	return 0;
 }
@@ -73,6 +75,23 @@ string longestCommonPrefix(vector<string>& strs) {
 		ans += str[i];
 	}
 	return ans;
+}
+
+int singleNumber(vector<int>& nums) {
+	unordered_map<int, int> map;
+	int ans = 0;
+	for (int i = 0; i < nums.size(); i++) {
+		map[nums[i]] += 1;
+	}
+
+	for (auto i : map) {
+		if (i.second != 2) {
+			ans = i.first;
+			break;
+		}
+	}
+	return ans;
+
 }
 
 
