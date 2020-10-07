@@ -7,92 +7,46 @@
 #include "Solution.cpp"
 #include <iterator>
 #include <array>
+#include <cstdlib>
 using namespace std;
 
-string addBinary(string a, string b);
+int myrandom(int i) { return rand() % i; }
 
 int main()
 {
-	
-	string s = "0p";
-	
-	class Solution sl;
-	cout << sl.isPalindrome(s);
+	//class Solution sol;
+	/*vector <vector<char>> mat = {{'1', '0', '1', '0', '0'} ,{'1', '0', '1', '1', '1'},{'1', '1', '1', '1', '1' }, {'1', '0', '0', '1', '0'}};
+	int ans = sol.maximalRectangle(mat);
+	cout << ans;*/
+
+	/*vector <int> arr = { 0,1,1,0,1,1,1,0,0,1 };
+	int ans = sol.largestRectangleArea(arr);
+	arr.push_back(0);
+	cout << ans;*/
+
+	/*vector<int> arr = { 1,2,3,4,5 };
+	Solution* obj = new Solution(arr);
+	vector<int> param = obj->shuffle();
+
+	int len = param.size();
+	for (int i = 0; i < len; i++) {
+		cout << param[i];
+	}
+	delete obj;*/
+	cout << "Program" << endl;
+	vector<int> arr = { 1,2,3,4,5,6,7,8,9,10 };
+	Solution* obj = new Solution(arr);
+	vector<int> s = obj->shuffle();
+	for (int i = 0; i < s.size(); i++) {
+		cout << s[i];
+	}
 
 	return 0;
 }
 
-string addBinary(string a, string b) {
-	string ans;
-	int la = a.length(), lb = b.length();
-	int ma =  la >= lb  ? la : lb;
 
-	if (la > lb) {
-		b.insert(0, la - lb, '0');
-		lb = b.length();
-	}
-	else if (lb > la) {
-		a.insert(0, lb - la, '0');
-		la = a.length();
-	}
 
-	bool res = false;
-	for (int i = 1; i <= ma; i++) {
-		int cha = a[la - i]-48, chb = b[lb - i]-48;
-		
-		if (!res) {
-			ans.insert(0,1,(char(cha ^ chb) + 48));
-			res = cha & chb;
-		}
-		else {
-			ans.insert(0,1,((char(cha ^ chb)^res) + 48));
-			res = char(cha | chb) & res;
-		}
-		
-	}
 
-	if (res) ans.insert(0,1,'1');
-	return ans;
-}
-
-string longestCommonPrefix(vector<string>& strs) {
-
-	int len = strs.size();
-	if (len == 0)
-		return "";
-
-	string ans;
-	auto str = strs[0];
-	int len2 = str.size();
-
-	for (int i = 0; i < len2; ++i)
-	{
-		for (int j = 1; j < len; ++j)
-		{
-			if (i == strs[j].size() || str[i] != strs[j][i])
-				return ans;
-		}
-		ans += str[i];
-	}
-	return ans;
-}
-
-int singleNumber(vector<int>& nums) {
-	unordered_map<int, int> map;
-	int ans = 0;
-	for (int i = 0; i < nums.size(); i++) {
-		map[nums[i]] += 1;
-	}
-
-	for (auto i : map) {
-		if (i.second != 2) {
-			ans = i.first;
-			break;
-		}
-	}
-	return ans;
-
-}
 
 
 

@@ -7,6 +7,7 @@
 #include <set>
 #include <iostream>
 #include <queue>
+#include <random>
 
 using namespace std;
 
@@ -44,7 +45,27 @@ struct ListNode {
  
 
 class Solution {
+private: 
+	vector<int>origin, s;
 public:
+	Solution(vector<int>& nums) {
+		origin = nums;
+		s = nums;
+	}
+
+	int myrandom(int i) { return rand() % i; }
+	/** Resets the array to its original configuration and return it. */
+	vector<int> reset() {
+		return origin;
+	}
+
+	/** Returns a random shuffling of the array. */
+	vector<int> shuffle() {
+		random_shuffle(s.begin(), s.end());
+		return s;
+	}
+
+
 	string toLowerCase(string str) {
 		
 		for_each(str.begin(), str.end(), [](char& c) {
@@ -807,7 +828,207 @@ public:
 	
 	}
 
-	void test(string s) {
-		cout << s;
+	bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+		int len_x = matrix[0].size();
+		int len_y = matrix.size();
+
+		for (int j = len_y - 1; j >= 0; j--) {
+			int x = 0, y = j;
+			while (y + 1 < len_y && x + 1 < len_x) {
+				if (matrix[y][x] != matrix[y + 1][x + 1]) return false;
+				y++;
+				x++;
+			}
+		}
+
+		for (int i = 0; i < len_x; i++) {
+			int x = i, y = 0;
+			while (x + 1 < len_x && y + 1 < len_y) {
+				if (matrix[y][x] != matrix[y + 1][x + 1]) return false;
+				y++;
+				x++;
+			}
+		}
+
+		return true;
 	}
+
+	string addBinary(string a, string b) {
+		string ans;
+		int la = a.length(), lb = b.length();
+		int ma = la >= lb ? la : lb;
+
+		if (la > lb) {
+			b.insert(0, la - lb, '0');
+			lb = b.length();
+		}
+		else if (lb > la) {
+			a.insert(0, lb - la, '0');
+			la = a.length();
+		}
+
+		bool res = false;
+		for (int i = 1; i <= ma; i++) {
+			int cha = a[la - i] - 48, chb = b[lb - i] - 48;
+
+			if (!res) {
+				ans.insert(0, 1, (char(cha ^ chb) + 48));
+				res = cha & chb;
+			}
+			else {
+				ans.insert(0, 1, ((char(cha ^ chb) ^ res) + 48));
+				res = char(cha | chb) & res;
+			}
+
+		}
+
+		if (res) ans.insert(0, 1, '1');
+		return ans;
+	}
+
+	string longestCommonPrefix(vector<string>& strs) {
+
+		int len = strs.size();
+		if (len == 0)
+			return "";
+
+		string ans;
+		auto str = strs[0];
+		int len2 = str.size();
+
+		for (int i = 0; i < len2; ++i)
+		{
+			for (int j = 1; j < len; ++j)
+			{
+				if (i == strs[j].size() || str[i] != strs[j][i])
+					return ans;
+			}
+			ans += str[i];
+		}
+		return ans;
+	}
+
+	int singleNumber(vector<int>& nums) {
+		unordered_map<int, int> map;
+		int ans = 0;
+		for (int i = 0; i < nums.size(); i++) {
+			map[nums[i]] += 1;
+		}
+
+		for (auto i : map) {
+			if (i.second != 2) {
+				ans = i.first;
+				break;
+			}
+		}
+		return ans;
+
+	}
+
+	int maximalRectangle(vector<vector<char>>& mat) {
+		int m, n, ans = 0, tans;
+
+		m = mat.size();      if (m == 0) return 0;
+		n = mat[0].size();
+
+		vector<int> heights = vector<int>(n, 0);
+
+		for (int i = 0; i < m; i++)
+		{
+			//Find the heights of histogram
+			for (int j = 0; j < n; j++)
+			{
+				if (mat[i][j] == '1')
+				{
+					heights[j]++;
+				}
+				else
+				{
+					heights[j] = 0;
+				}
+			}
+
+			//Find the largest rectangle possible in histogram
+			tans = largestRectangleArea(heights);
+
+			if (tans > ans) ans = tans;
+		}
+		return ans;
+	}
+
+	int largestRectangleArea(vector<int> arr) {
+		arr.push_back(0);
+		int n = arr.size(), ans = 0, k, cur, vz = 0;
+		if (n == 1)return 0;
+
+		int* cnt;
+		cnt = new int[n];
+
+		for (int i = 0; i < n; i++)
+		{
+			if (vz == 0 || arr[vz - 1] < arr[i])
+			{
+				arr[vz] = arr[i];
+				cnt[vz] = 1;
+				vz++;
+			}
+			else
+			{
+				k = 0;
+				while (vz)
+				{
+					cur = arr[vz - 1];
+					if (cur < arr[i]) break;
+					k += cnt[vz - 1];
+					ans = max(ans, k * cur);
+					vz--;
+				}
+				arr[vz] = arr[i];
+				cnt[vz] = k + 1;
+				vz++;
+			}
+		}
+		delete [] cnt;
+		return ans;
+	}
+
+	int minTimeToVisitAllPoints(vector<vector<int>>& points) {
+		int counter = 0;
+		for (int i = 1; i < points.size(); i++) {
+			int x = abs(points[i][0] - points[i - 1][0]);
+			int y = abs(points[i][1] - points[i - 1][1]);
+			counter += (x > y) ? x : y;
+		}
+		return counter;
+	}
+
+	vector<string> commonChars(vector<string>& A) {
+		vector<string> res;
+		vector<vector<int>> temp;
+		int i, j;
+
+		for (i = 0; i < A.size(); i++) {
+			vector<int> level(26, 0);
+			for (j = 0; j < A[i].size(); j++) {
+				level[A[i][j] - 'a']++;
+			}
+			temp.push_back(level);
+		}
+
+		for (i = 0; i < 26; i++) {
+			int min = INT_MAX;
+
+			for (j = 0; j < temp.size(); j++) {
+				if (temp[j][i] < min) min = temp[j][i];
+			}
+			while (min) {
+				string p;
+				p += i + 'a';
+				res.push_back(p);
+				min--;
+			}
+		}
+		return res;
+	}
+	
 };

@@ -1,0 +1,2 @@
+E:\C++ Code\Interview\Debug\Interview.exe
+E:\C++ Code\Interview\Debug\Interview.pdb
